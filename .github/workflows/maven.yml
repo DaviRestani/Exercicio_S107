@@ -24,6 +24,14 @@ jobs:
         cache: maven
 
     - name: Build with Maven
-      run: mvn clean test
+      run: mvn clean test site
+      
+    - name: Upload artefatos de teste
+      uses: actions/upload-artifact@v3
+      with:
+        name: relatorio-testes-site
+        path: Aula-GitHub-Actions/target/site/
+      
+      
 
 
