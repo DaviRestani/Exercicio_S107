@@ -30,8 +30,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: relatorio-testes-site
-        path: Aula-GitHub-Actions/target/site/
-      
-      
-
-
+        path: Exercicio_S107/target/site/
