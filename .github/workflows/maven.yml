@@ -65,4 +65,4 @@ jobs:
         env:
           EMAIL_GABRIEL: ${{secrets.EMAIL_GABRIEL}}
           EMAIL_DAVI: ${{secrets.EMAIL_DAVI}}
-        run: sh scripts/shell.sh
+        run: sh scripts/send-email.sh
