@@ -59,12 +59,10 @@ jobs:
 
     needs: [teste, empacotar]
     steps:
-      - name: Send mail
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: smtp.gmail.com
-          server_port: 465
-          secure: true
-          subject: Github Actions job result
-          to: ${{secrets.EMAIL_GABRIEL}}, ${{secrets.EMAIL_DAVI}}
-          from: action@github.com
+      - name: Executar scripts versionados
+        uses: actions/checkout@v3
+      - name: Run email code
+        env:
+          EMAIL_GABRIEL: ${{secrets.EMAIL_GABRIEL}}
+          EMAIL_DAVI: ${{secrets.EMAIL_DAVI}}
+      - run: sh scripts/shell.sh
