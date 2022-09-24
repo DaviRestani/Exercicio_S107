@@ -63,7 +63,7 @@ public class TesteCompradeJogos {
         compra.adiciona(jg2);
         compra.somaTotal();
 
-        assertEquals(200, compra.somaTotal(), 0.1);
+        assertEquals(20, compra.somaTotal(), 0.1);
 
     }
 
