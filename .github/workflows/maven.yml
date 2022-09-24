@@ -53,3 +53,18 @@ jobs:
         with:
           name: trabalho_s107-jar
           path: target/*.jar
+
+  notificacao:
+    runs-on: ubuntu-latest
+
+    needs: [teste, empacotar]
+    steps:
+      - name: Send mail
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          subject: Github Actions job result
+          to: ${{secrets.EMAIL_GABRIEL}}, ${{secrets.EMAIL_DAVI}}
+          from: action@github.com
