@@ -25,7 +25,7 @@ jobs:
 
     - name: Test with Maven
       run: mvn clean test site
-      
+
     - name: Upload artefatos de teste
       uses: actions/upload-artifact@v3
       with:
@@ -53,3 +53,21 @@ jobs:
         with:
           name: trabalho_s107-jar
           path: target/*.jar
+
+  notificacao:
+    runs-on: ubuntu-latest
+
+    needs: [teste, empacotar]
+    steps:
+      - name: Send mail
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_DAVI }}
+          password: ${{ secrets.SENHA_SECRETA }}
+          subject: Github Actions job result
+          to: ${{ secrets.EMAIL_DAVI}} , ${{ secrets.EMAIL_GABRIEL }}
+          from: ${{ secrets.EMAIL_DAVI }}
+          body: Build job of ${{github.repository}} completed successfully!
+          secure: true
