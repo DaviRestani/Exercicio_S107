@@ -71,3 +71,15 @@ jobs:
           from: ${{ secrets.EMAIL_DAVI }}
           body: Build job of ${{github.repository}} completed successfully!
           secure: true
+
+  notificacao-script:
+    runs-on: ubuntu-latest
+
+    needs: [ teste, empacotar ]
+    steps:
+      - name: Executar scripts versionados
+        uses: actions/checkout@v3
+      - run: sh scripts/send-email.sh
+        env:
+          EMAIL_GABRIEL: ${{secrets.EMAIL_OUT_GABRIEL}}
+          EMAIL_DAVI: ${{secrets.EMAIL_OUT_DAVI}}
